@@ -15,7 +15,8 @@
                 <tr>
                     <th width="40px">No</th>
                     <th>Nama</th>
-                    <th width="200px"></th>
+                    <th width="100px">Status</th>
+                    <th width="200px">Tindakan</th>
                 </tr>
             </thead>
             <tbody id="targetData">
@@ -24,9 +25,14 @@
                     <tr>
                         <td><?= $no ?></td>
                         <td>
-                            <strong><?= $row->nama_user ?></strong><br>
+                            <strong><?= $row->namalengkap ?></strong><br>
                             <p><?= $row->email ?> - <?= $row->role ?></p>
                         </td>
+                        <td><?php if ($row->is_active == 1) {
+                                echo '<div class="label label-success">Aktif</div>';
+                            } else {
+                                echo '<div class="label label-danger">Tidak Aktif</div>';
+                            } ?></td>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-info"><i class="fa fa-cogs"></i></button>

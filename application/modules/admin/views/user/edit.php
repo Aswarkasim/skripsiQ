@@ -21,7 +21,7 @@
                                 <label for="" class="pull-right">Nama</label>
                             </div>
                             <div class="col-md-9">
-                                <input value="<?= $user->nama_user ?>" type="text" name="nama_user" class="form-control">
+                                <input value="<?= $user->namalengkap ?>" type="text" name="namalengkap" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -43,14 +43,32 @@
                                 <label for="" class="pull-right">Role</label>
                             </div>
                             <div class="col-md-9">
-                                <select name="id_role" class="form-control">
-                                    <option value="">--Role--</option>
-                                    <option value="Admin" <?php if ($user->role == 'Admin') {
-                                                                echo 'Admin';
+                                <select name="role" class="form-control">
+                                    <option value="none">--Role--</option>
+                                    <option value="User" <?php if ($user->role == "User") {
+                                                                echo "selected";
+                                                            } ?>>User</option>
+                                    <option value="Admin" <?php if ($user->role == "Admin") {
+                                                                echo "selected";
                                                             } ?>>Admin</option>
-                                    <option value="Super Admin" <?php if ($user->role == 'Super Admin') {
-                                                                    echo 'Super Admin';
-                                                                } ?>>Super Admin</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="" class="pull-right">Status</label>
+                            </div>
+                            <div class="col-md-9">
+                                <select name="is_aktif" class="form-control">
+                                    <option value="none">--Status--</option>
+                                    <option value="0" <?php if ($user->is_active == "0") {
+                                                            echo "selected";
+                                                        } ?>>Tidak Aktif</option>
+                                    <option value="1" <?php if ($user->is_active == "1") {
+                                                            echo "selected";
+                                                        } ?>>Aktif</option>
                                 </select>
                             </div>
                         </div>

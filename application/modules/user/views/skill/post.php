@@ -42,9 +42,12 @@
                             </select>
                         </div>
                         <div class="single-input">
-                            <label for="j_type">Skill Tipe:</label>
-                            <select id="j_type" name="job_tipe">
-                                <option value="">Select Region</option>
+                            <label for="j_reg">Regional:</label>
+                            <select id="j_reg" class="" name="regional">
+                                <option value="">Pilih Region</option>
+                                <?php foreach ($regional as $row) { ?>
+                                    <option value="<?= $row->nama_regional ?>"><?= $row->nama_regional ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>

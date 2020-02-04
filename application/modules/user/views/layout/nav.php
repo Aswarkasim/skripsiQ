@@ -15,6 +15,9 @@ $uri = $this->uri->segment('2');
             <li class="<?php if ($uri == 'profil') {
                             echo 'active';
                         } ?>"><a href="<?= base_url('user/profil') ?>"><i class="fa fa-user"></i>Profil Saya</a></li>
+            <li class="<?php if ($uri == 'tanggapan') {
+                            echo 'active';
+                        } ?>"><a href="<?= base_url('user/tanggapan') ?>"><i class="fa fa-globe"></i>Tanggapan</a></li>
             <li class="<?php if ($uri == 'pesan') {
                             echo 'active';
                         } ?>"><a href="<?= base_url('user/pesan') ?>"><i class="fa fa-envelope-open"></i>Pesan</a></li>

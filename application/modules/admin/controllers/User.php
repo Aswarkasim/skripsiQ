@@ -5,6 +5,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class User extends CI_Controller
 {
 
+
+    public function __construct()
+    {
+        parent::__construct();
+        // if (($this->session->userdata('id_user') == "") || $this->session->userdata('role') != "Admin") {
+        //     redirect('error_page');
+        // }
+    }
+
+
     public function index()
     {
         $user = $this->Crud_model->listing('tbl_user');
@@ -31,7 +41,7 @@ class User extends CI_Controller
 
         $valid = $this->form_validation;
 
-        $valid->set_rules('nama_user', 'Nama User', 'required');
+        $valid->set_rules('namalengkap', 'Nama User', 'required');
         $valid->set_rules('email', 'Email', 'required|is_unique[tbl_user.email]|valid_email');
         $valid->set_rules('password', 'Password', 'required');
         $valid->set_rules('re_password', 'Retype Password', 'required|matches[password]');
@@ -47,11 +57,11 @@ class User extends CI_Controller
         } else {
             $i = $this->input;
             $data = [
-                'nama_user'     => $i->post('nama_user'),
+                'namalengkap'     => $i->post('namalengkap'),
                 'email'         => $i->post('email'),
                 'password'      => sha1($i->post('password')),
                 'role'          => $i->post('role'),
-                'is_active'     => 0
+                'is_active'     => $i->post('is_aktif')
             ];
             $this->Crud_model->add('tbl_user', $data);
             $this->session->set_flashdata('msg', 'ditambah');
@@ -65,14 +75,14 @@ class User extends CI_Controller
 
         $valid = $this->form_validation;
 
-        $valid->set_rules('nama_user', 'Nama User', 'required');
+        $valid->set_rules('namalengkap', 'Nama User', 'required');
         $valid->set_rules('email', 'Email', 'required|valid_email');
         $valid->set_rules('password', 'Password', 'matches[re_password]');
         $valid->set_rules('re_password', 'Retype Password', 'matches[password]');
 
         if ($valid->run() === FALSE) {
             $data = [
-                'title'     => 'Edit ' . $user->nama_user,
+                'title'     => 'Edit ' . $user->namalengkap,
                 'edit'       => 'admin/user/edit/',
                 'back'      => 'admin/user',
                 'user'      => $user,
@@ -90,11 +100,11 @@ class User extends CI_Controller
             }
             $data = [
                 'id_user'       => $id_user,
-                'nama_user'     => $i->post('nama_user'),
+                'namalengkap'     => $i->post('namalengkap'),
                 'email'         => $i->post('email'),
                 'password'      => $password,
                 'role'          => $i->post('role'),
-                'is_active'     => 0
+                'is_active'     => $i->post('is_aktif')
             ];
             $this->Crud_model->edit('tbl_user', 'id_user', $id_user, $data);
             $this->session->set_flashdata('msg', 'diedit');

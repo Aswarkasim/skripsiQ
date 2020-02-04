@@ -25,10 +25,7 @@ class Crud_model extends CI_Model
 
 
 
-    function getId($table, $where)
-    {
-        return $this->db->get_where($where, $table);
-    }
+
 
     public function listingOneAll($table, $field, $where, $limit = null, $offset = null)
     {
@@ -88,5 +85,14 @@ class Crud_model extends CI_Model
             ->from('tbl_user')
             ->join('tbl_user_role', 'tbl_user_role.id_role = tbl_user.id_role', 'LEFT');
         return $this->db->get()->result();
+    }
+
+    function countTanggapan($id_post)
+    {
+        $tgp = $this->db->select('*')
+            ->from('tbl_tanggapan')
+            ->where('id_post', $id_post)
+            ->get();
+        return $tgp->result();
     }
 }

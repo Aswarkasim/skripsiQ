@@ -38,6 +38,7 @@ class Job extends CI_Controller
 
     public function post()
     {
+        $regional = $this->Crud_model->listing('tbl_regional');
         $kategori = $this->Crud_model->listing('tbl_kategori');
         $required = '%s tidak boleh kosong';
         $valid = $this->form_validation;
@@ -58,6 +59,7 @@ class Job extends CI_Controller
                     echo 'aa';
                     $data = [
                         'kategori'  => $kategori,
+                        'regional'  => $regional,
                         'error'     => $this->upload->display_errors(),
                         'content'   => 'user/job/post'
                     ];
@@ -74,9 +76,10 @@ class Job extends CI_Controller
                         'nama_job'      => $i->post('nama_job'),
                         'lokasi'        => $i->post('lokasi'),
                         // 'type'          => $i->post('type'),
-                        'type'          => 'Part Time',
+                        'slug'          => url_title($i->post('nama_job', 'dash', TRUE)),
                         'regional'      => 'Makassar',
                         'link'          => $i->post('link'),
+                        'deskripsi'          => $i->post('deskripsi'),
                         'upah_min'      => $i->post('upah_min'),
                         'upah_max'      => $i->post('upah_max'),
                         'gambar'        => $upload_data['uploads']['file_name']
@@ -89,6 +92,7 @@ class Job extends CI_Controller
         }
         $data = [
             'kategori'  => $kategori,
+            'regional'  => $regional,
             'content' => 'user/job/post'
         ];
         $this->load->view('user/layout/wrapper', $data, FALSE);
@@ -122,6 +126,7 @@ class Job extends CI_Controller
     {
         $job  = $this->Crud_model->listingOne('tbl_job', 'id_job', $id_job);
         $kategori = $this->Crud_model->listing('tbl_kategori');
+        $regional = $this->Crud_model->listing('tbl_regional');
         $gambar = $this->Crud_model->listingOneAll('tbl_gambar', 'id_post', $id_job);
         $required = '%s tidak boleh kosong';
         $valid = $this->form_validation;
@@ -139,6 +144,7 @@ class Job extends CI_Controller
                         'kategori'  => $kategori,
                         'job'     => $job,
                         'gambar'    => $gambar,
+                        'regional'  => $regional,
                         'error'     => $this->upload->display_errors(),
                         'content'   => 'user/job/edit'
                     ];
@@ -160,6 +166,7 @@ class Job extends CI_Controller
                         // 'type'          => $i->post('type'),
                         'type'          => 'Part Time',
                         'regional'      => 'Makassar',
+                        'slug'          => url_title($i->post('nama_job', 'dash', TRUE)),
                         'deskripsi'     => $i->post('deskripsi'),
                         'upah_min'      => $i->post('upah_min'),
                         'upah_max'      => $i->post('upah_max'),
@@ -180,7 +187,8 @@ class Job extends CI_Controller
                     'nama_job'      => $i->post('nama_job'),
                     // 'type'          => $i->post('type'),
                     'type'          => 'Part Time',
-                    'regional'      => 'Makassar',
+                    'regional'      => $i->post('regional'),
+                    'slug'          => url_title($i->post('nama_job', 'dash', TRUE)),
                     'deskripsi'     => $i->post('deskripsi'),
                     'upah_min'      => $i->post('upah_min'),
                     'upah_max'      => $i->post('upah_max'),
@@ -193,6 +201,7 @@ class Job extends CI_Controller
         $data = [
             'kategori'  => $kategori,
             'job'     => $job,
+            'regional'  => $regional,
             'gambar'    => $gambar,
             'content' => 'user/job/edit'
         ];

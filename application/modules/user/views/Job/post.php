@@ -36,8 +36,11 @@
                     <div class="single-resume-feild feild-flex-2">
                         <div class="single-input">
                             <label for="j_reg">Regional:</label>
-                            <select id="j_reg" name="regional">
-                                <option value="">Select Region</option>
+                            <select id="j_reg" class="" name="regional">
+                                <option value="">Pilih Region</option>
+                                <?php foreach ($regional as $row) { ?>
+                                    <option value="<?= $row->nama_regional ?>"><?= $row->nama_regional ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="single-input">

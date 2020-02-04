@@ -21,7 +21,7 @@
                                 <label for="" class="pull-right">Nama</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" name="nama_user" class="form-control">
+                                <input type="text" name="namalegnkap" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -43,10 +43,24 @@
                                 <label for="" class="pull-right">Role</label>
                             </div>
                             <div class="col-md-9">
-                                <select name="id_role" class="form-control">
-                                    <option value="">--Role--</option>
+                                <select name="role" class="form-control">
+                                    <option value="none">--Role--</option>
+                                    <option value="User">User</option>
                                     <option value="Admin">Admin</option>
-                                    <option value="Super Admin">Super Admin</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="" class="pull-right">Status</label>
+                            </div>
+                            <div class="col-md-9">
+                                <select name="is_aktif" class="form-control">
+                                    <option value="none">--Status--</option>
+                                    <option value="0">Tidak Aktif</option>
+                                    <option value="1">Aktif</option>
                                 </select>
                             </div>
                         </div>

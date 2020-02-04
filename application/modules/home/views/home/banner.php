@@ -21,22 +21,26 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="banner-search">
-                        <h2>Hire expert freelancers.</h2>
-                        <h4>We have 1542 job offers for you! </h4>
-                        <form>
+                        <h2>Cari orang yang kamu butuhkan</h2>
+                        <!-- <h4>We have 1542 job offers for you! </h4> -->
+                        <form action="<?= base_url('home/cari') ?>" method="post">
                             <div class="banner-form-box">
                                 <div class="banner-form-input">
-                                    <input type="text" placeholder="Job Title, Keywords, or Phrase">
+                                    <input type="text" name="keyword" placeholder="Nama pekerjaan atau skill">
                                 </div>
                                 <div class="banner-form-input">
-                                    <input type="text" placeholder="City, State or ZIP">
-                                </div>
-                                <div class="banner-form-input">
-                                    <select class="banner-select">
-                                        <option selected>Select Sector</option>
-                                        <?php foreach ($kategori as $row) { ?>
-                                            <option value="<?= $row->id_kategori ?>"><?= $row->nama_kategori ?></option>
+                                    <select class="banner-select" name="regional">
+                                        <option selected>Pilih Regional</option>
+                                        <?php foreach ($regional as $row) { ?>
+                                            <option value="<?= $row->nama_regional ?>"><?= $row->nama_regional ?></option>
                                         <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="banner-form-input">
+                                    <select class="banner-select" name="table">
+                                        <option selected>Pilih Type</option>
+                                        <option value="tbl_skill">Skill</option>
+                                        <option value="tbl_job">Job</option>
                                     </select>
                                 </div>
                                 <div class="banner-form-input">

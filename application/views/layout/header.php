@@ -2,6 +2,8 @@
 $uri_home = $this->uri->segment('1');
 $id_user = $this->session->userdata('id_user');
 $user = $this->Crud_model->listingOne('tbl_user', 'id_user', $id_user);
+
+$sektor = $this->Crud_model->listing('tbl_kategori');
 ?>
 <!-- Header Area Start -->
 <header class="jobguru-header-area stick-top forsticky <?php if ($uri_home != '') {
@@ -33,20 +35,18 @@ $user = $this->Crud_model->listingOne('tbl_user', 'id_user', $id_user);
                                 <li><a href="<?= base_url('home/job') ?>">Job</a></li>
                                 <li><a href="<?= base_url('home/skill') ?>">Skill</a></li>
                                 <li class="has-children">
-                                    <a href="#">Ketegori</a>
+                                    <a href="#">Sektor</a>
                                     <ul>
-                                        <li><a href="about.html">About us</a></li>
-                                        <li class="has-inner-child">
+                                        <?php foreach ($sektor as $row) { ?>
+                                            <li><a href="<?= $row->id_kategori ?>"><?= $row->nama_kategori ?></a></li>
+                                        <?php } ?>
+                                        <!-- <li class="has-inner-child">
                                             <a href="#">blog</a>
                                             <ul>
                                                 <li><a href="blog.html">blog</a></li>
                                                 <li><a href="single-blog.html">single blog</a></li>
                                             </ul>
-                                        </li>
-                                        <li><a href="job-page.html">job page</a></li>
-                                        <li><a href="login.html">login</a></li>
-                                        <li><a href="register.html">register</a></li>
-                                        <li><a href="contact.html">contact us</a></li>
+                                        </li> -->
                                     </ul>
                                 </li>
                             </ul>

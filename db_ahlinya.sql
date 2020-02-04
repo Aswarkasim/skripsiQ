@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Jan 2020 pada 07.59
+-- Waktu pembuatan: 04 Feb 2020 pada 07.49
 -- Versi server: 10.1.32-MariaDB
 -- Versi PHP: 7.2.5
 
@@ -40,7 +40,8 @@ CREATE TABLE `tbl_gambar` (
 --
 
 INSERT INTO `tbl_gambar` (`id_gambar`, `gambar`, `id_post`, `date_created`) VALUES
-(1, 'bertiga.jpeg', 'SKILL196792037084364', '0000-00-00 00:00:00');
+(1, 'bertiga.jpeg', 'SKILL196792037084364', '0000-00-00 00:00:00'),
+(2, 'ARNI_NOISE.jpeg', 'SKILL621899582477634', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -73,6 +74,9 @@ CREATE TABLE `tbl_job` (
 
 INSERT INTO `tbl_job` (`id_job`, `id_user`, `id_kategori`, `nama_job`, `slug`, `lokasi`, `regional`, `type`, `link`, `upah_min`, `upah_max`, `deskripsi`, `gambar`, `status`, `date_created`, `date_expired`) VALUES
 ('JOB069551873164420', '10', '41243212', 'Gangguaan Listrik', '', '', 'Makassar', 'Part Time', '', 2000, 10000, '', 'pondok-tahfizh-masjid-jami-sengkang1.jpg', 'Aktif', '2020-01-02 12:53:02', '0000-00-00 00:00:00'),
+('JOB630189246375409', '3123', '32223f', 'Perbaiki keran air', 'Perbaiki-keran-air', '', 'Makassar', '', 'xxxxx', 1000, 3000, '', 'bertiga.jpeg', 'Aktif', '2020-02-04 08:40:42', '0000-00-00 00:00:00'),
+('JOB769051341279345', '3123', '32223f', 'Cuci Piring Warung makan', '', '', 'Makassar', '', '', 2000, 30002, '', 'Bulukumba.jpeg', 'Aktif', '2020-02-04 08:39:05', '0000-00-00 00:00:00'),
+('JOB921514707680386', '3123', '32223f', 'Cuci karpet', 'Cuci-karpet', 'Mamuju', 'Makassar', '', '', 1000, 10000, '<p>Lorem Piisnafs</p>', 'ARNANDA1.jpeg', 'Aktif', '2020-02-04 08:44:12', '0000-00-00 00:00:00'),
 ('JOB992337670185526', '10', '41243212', 'Pell Lantain', '', '', 'Makassar', 'Part Time', 'xxxxx', 1000, 3000, '', '9493de01b143caeab7b53ee98fbaf6de.jpg', 'Aktif', '2020-01-02 12:52:06', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
@@ -94,22 +98,67 @@ CREATE TABLE `tbl_kategori` (
 --
 
 INSERT INTO `tbl_kategori` (`id_kategori`, `nama_kategori`, `icon`, `gambar`, `date_created`) VALUES
-('21e212', 'Perkebunan', 'fa fa-dashboard', '', '2020-01-15 13:37:22'),
-('32223f', 'Rumah', 'fa fa-home', '', '2020-01-15 13:37:22'),
+('21e212', 'Perkebunan', 'fa fa-dashboard', 'default.jpg', '2020-01-15 13:37:22'),
+('32223f', 'Rumah', 'fa fa-home', 'default.jpg', '2020-01-15 13:37:22'),
 ('41243212', 'servis elektronik', 'fa fa-desktop', 'default.jpg', '2019-10-20 11:50:18');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_komentar`
+-- Struktur dari tabel `tbl_konfigurasi`
 --
 
-CREATE TABLE `tbl_komentar` (
-  `id_tanggapan` varchar(20) NOT NULL,
-  `id_user` varchar(20) NOT NULL,
-  `isi` text NOT NULL,
-  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE `tbl_konfigurasi` (
+  `id_konfigurasi` int(1) NOT NULL,
+  `nama_aplikasi` varchar(100) NOT NULL,
+  `nama_pimpinan` varchar(100) NOT NULL,
+  `provinsi` varchar(128) NOT NULL,
+  `kabupaten` varchar(128) NOT NULL,
+  `kecamatan` varchar(128) NOT NULL,
+  `alamat` text NOT NULL,
+  `kontak_person` varchar(20) NOT NULL,
+  `stok_min` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_konfigurasi`
+--
+
+INSERT INTO `tbl_konfigurasi` (`id_konfigurasi`, `nama_aplikasi`, `nama_pimpinan`, `provinsi`, `kabupaten`, `kecamatan`, `alamat`, `kontak_person`, `stok_min`) VALUES
+(1, 'Arks Dev', 'Waddah', 'Sulawesi Selatan', 'Makassar', 'Manggala', 'jl. Dg. Hayo', '085298730727', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_laporan`
+--
+
+CREATE TABLE `tbl_laporan` (
+  `id_laporan` varchar(15) NOT NULL,
+  `id_user` varchar(20) NOT NULL,
+  `hal` text NOT NULL,
+  `isi` text NOT NULL,
+  `is_read` int(1) NOT NULL DEFAULT '0',
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_regional`
+--
+
+CREATE TABLE `tbl_regional` (
+  `nama_regional` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_regional`
+--
+
+INSERT INTO `tbl_regional` (`nama_regional`) VALUES
+('Gowa'),
+('Makassar');
 
 -- --------------------------------------------------------
 
@@ -139,6 +188,9 @@ CREATE TABLE `tbl_skill` (
 INSERT INTO `tbl_skill` (`id_skill`, `id_user`, `id_kategori`, `nama_skill`, `slug`, `regional`, `type`, `upah_min`, `upah_max`, `deskripsi`, `gambar`, `date_created`) VALUES
 ('SKILL196792037084364', '10', '41243212', 'Service Laptop 1', '', 'Makassar', 'Part Time', 20001, 30002, '<p><strong>memberanikan </strong>diri menjadi seperti mereka saat ini asfasf</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-25 13:37:13'),
 ('SKILL196792037084367', '10', '41243212', 'Service Laptop 2', '', 'Makassar', 'Part Time', 20001, 30002, '<p><strong>memberanikan </strong>diri menjadi seperti mereka saat ini asfasf</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-25 13:37:13'),
+('SKILL350289981767342', '3123', '21e212', 'Panjat Kelapa', 'Panjat-Kelapa', '', 'Part Time', 200000, 10000, '<p>lorem ipsum</p>', 'ASSA_BAJU_PUTIH_WITH_NOISE.jpeg', '2020-02-04 08:35:20'),
+('SKILL489286502607531', '3123', '32223f', 'Angkat Air', 'Angkat-Air', 'Gowa', '', 2000, 10000, '<p>Lorem IPsum dodosmlasf</p>', 'Akar_kesederhaan.jpeg', '2020-02-04 08:42:28'),
+('SKILL621899582477634', '3123', '21e212', 'Cuci Piring Kilat', 'Cuci-Piring-Kilat', 'Gowa', '', 2000, 300000000, '<p>INformatif</p>', 'Cover_waktu_itu.png', '2020-02-04 08:37:39'),
 ('SKILL820857623194107', '10', '41243212', 'Angkat  Lemari 3', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
 ('SKILL820857623194110', '10', '41243212', 'Angkat  Lemari 4', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
 ('SKILL820857623194111', '10', '41243212', 'Angkat  Lemari 5', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
@@ -149,6 +201,31 @@ INSERT INTO `tbl_skill` (`id_skill`, `id_user`, `id_kategori`, `nama_skill`, `sl
 ('SKILL820857623194145', '10', '41243212', 'Angkat  Lemari 10', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
 ('SKILL820857623194165', '10', '41243212', 'Angkat  Lemari 11', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
 ('SKILL820857623194198', '10', '41243212', 'Angkat  Lemari 12', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_tanggapan`
+--
+
+CREATE TABLE `tbl_tanggapan` (
+  `id_tanggapan` varchar(20) NOT NULL,
+  `id_user` varchar(20) NOT NULL,
+  `id_to` varchar(20) NOT NULL,
+  `id_post` varchar(20) NOT NULL,
+  `isi` text NOT NULL,
+  `is_read` int(1) NOT NULL DEFAULT '0',
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_tanggapan`
+--
+
+INSERT INTO `tbl_tanggapan` (`id_tanggapan`, `id_user`, `id_to`, `id_post`, `isi`, `is_read`, `date_created`) VALUES
+('004341136586227', '3123', '10', 'JOB069551873164420', '<p>Adakah</p>', 0, '2020-02-03 00:00:17'),
+('653062317574492', '3123', '10', 'SKILL196792037084364', '<p>ADakah</p>', 0, '2020-02-03 00:02:04'),
+('839429182573140', '3123', '10', 'JOB069551873164420', '<p>affs</p>', 0, '2020-02-02 23:58:46');
 
 -- --------------------------------------------------------
 
@@ -198,8 +275,9 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `foto`, `username`, `email`, `namalengkap`, `password`, `role`, `is_active`, `profesi`, `tgl_lahir`, `bahasa`, `deskripsi`, `hp`, `kota`, `kecamatan`, `kodepos`, `alamat`, `tw`, `fb`, `ig`, `linkedin`, `date_created`) VALUES
-('', 'default.jpg', 'burhan', 'burhan@gmail.com', 'Burhan', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'User', 1, 'xxxxx', '0000-00-00', '', '', '', '', '', '0', '0', '', '', '', '', '2019-10-19 07:37:17'),
-('10', '20190302_0829531.jpg', 'aswarkasim', 'aswarkasim@gmail.com', 'Aswar Kasim', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'User', 1, 'xxxxx sdf df', '2019-10-24', 'xxxx', 'xxxx xvsvd', 'xxxxx', '', 'xxxx', '0dsdsd', '0sdfsdf', 'xxxx sdf', 'xxxxfsdf', 'https://instagram.com', 'xxxxxxsdf', '2019-09-25 07:44:46');
+('10', 'Bulukumba.jpeg', 'aswarkasim', 'aswarkasim@gmail.com', 'Aswar Kasim', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'User', 1, 'xxxxx sdf df', '2019-10-24', 'xxxx', 'xxxx xvsvd', 'xxxxx', 'Gowa', 'xxxx', '0dsdsd', '0sdfsdf', 'xxxxfsdf', 'xxxx sdf', 'https://instagram.com', 'xxxxxxsdf', '2019-09-25 07:44:46'),
+('2', 'default.jpg', 'burhan', 'burhan@gmail.com', 'Burhan', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'User', 1, 'xxxxx', '0000-00-00', '', '', '', '', '', '0', '0', '', '', '', '', '2019-10-19 07:37:17'),
+('3123', 'RARA_NOISE.jpeg', 'admin', 'admin@gmail.com', 'admin', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'Admin', 1, '', '2020-01-14', '', '', '', '', '', '', '', '', '', '', '', '2020-01-17 14:20:55');
 
 --
 -- Indexes for dumped tables
@@ -224,16 +302,34 @@ ALTER TABLE `tbl_kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `tbl_komentar`
+-- Indeks untuk tabel `tbl_konfigurasi`
 --
-ALTER TABLE `tbl_komentar`
-  ADD PRIMARY KEY (`id_tanggapan`);
+ALTER TABLE `tbl_konfigurasi`
+  ADD PRIMARY KEY (`id_konfigurasi`);
+
+--
+-- Indeks untuk tabel `tbl_laporan`
+--
+ALTER TABLE `tbl_laporan`
+  ADD PRIMARY KEY (`id_laporan`);
+
+--
+-- Indeks untuk tabel `tbl_regional`
+--
+ALTER TABLE `tbl_regional`
+  ADD PRIMARY KEY (`nama_regional`);
 
 --
 -- Indeks untuk tabel `tbl_skill`
 --
 ALTER TABLE `tbl_skill`
   ADD PRIMARY KEY (`id_skill`);
+
+--
+-- Indeks untuk tabel `tbl_tanggapan`
+--
+ALTER TABLE `tbl_tanggapan`
+  ADD PRIMARY KEY (`id_tanggapan`);
 
 --
 -- Indeks untuk tabel `tbl_type`
@@ -255,7 +351,13 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT untuk tabel `tbl_gambar`
 --
 ALTER TABLE `tbl_gambar`
-  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_konfigurasi`
+--
+ALTER TABLE `tbl_konfigurasi`
+  MODIFY `id_konfigurasi` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

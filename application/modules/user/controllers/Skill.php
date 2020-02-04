@@ -15,6 +15,7 @@ class Skill extends CI_Controller
 
     public function index()
     {
+
         $id_user = $this->session->userdata('id_user');
         $skillJlh = $this->Crud_model->listingOneAll('tbl_skill', 'id_user', $id_user, null);
 
@@ -62,6 +63,7 @@ class Skill extends CI_Controller
 
     function post()
     {
+        $regional = $this->Crud_model->listing('tbl_regional');
         $kategori = $this->Crud_model->listing('tbl_kategori');
         $required = '%s tidak boleh kosong';
         $valid = $this->form_validation;
@@ -82,6 +84,7 @@ class Skill extends CI_Controller
                     echo 'aa';
                     $data = [
                         'kategori'  => $kategori,
+                        'regional'  => $regional,
                         'error'     => $this->upload->display_errors(),
                         'content'   => 'user/skill/post'
                     ];
@@ -97,8 +100,8 @@ class Skill extends CI_Controller
                         'id_kategori'   => $i->post('id_kategori'),
                         'nama_skill'      => $i->post('nama_skill'),
                         // 'type'          => $i->post('type'),
-                        'type'          => 'Part Time',
-                        'regional'      => 'Makassar',
+                        'regional'      => $i->post('regional'),
+                        'slug'          => url_title($i->post('nama_skill', 'dash', TRUE)),
                         'deskripsi'     => $i->post('deskripsi'),
                         'upah_min'      => $i->post('upah_min'),
                         'upah_max'      => $i->post('upah_max'),
@@ -112,6 +115,7 @@ class Skill extends CI_Controller
         }
         $data = [
             'kategori'  => $kategori,
+            'regional'  => $regional,
             'content' => 'user/skill/post'
         ];
         $this->load->view('user/layout/wrapper', $data, FALSE);
@@ -121,6 +125,7 @@ class Skill extends CI_Controller
     {
         $skill  = $this->Crud_model->listingOne('tbl_skill', 'id_skill', $id_skill);
         $kategori = $this->Crud_model->listing('tbl_kategori');
+        $regional = $this->Crud_model->listing('tbl_regional');
         $gambar = $this->Crud_model->listingOneAll('tbl_gambar', 'id_post', $id_skill);
         $required = '%s tidak boleh kosong';
         $valid = $this->form_validation;
@@ -137,6 +142,7 @@ class Skill extends CI_Controller
                     $data = [
                         'kategori'  => $kategori,
                         'skill'     => $skill,
+                        'regional'     => $regional,
                         'gambar'    => $gambar,
                         'error'     => $this->upload->display_errors(),
                         'content'   => 'user/skill/edit'
@@ -157,8 +163,8 @@ class Skill extends CI_Controller
                         'id_kategori'   => $i->post('id_kategori'),
                         'nama_skill'      => $i->post('nama_skill'),
                         // 'type'          => $i->post('type'),
-                        'type'          => 'Part Time',
-                        'regional'      => 'Makassar',
+                        'slug'          => url_title($i->post('nama_skill', 'dash', TRUE)),
+                        'regional'      => $i->post('regional'),
                         'deskripsi'     => $i->post('deskripsi'),
                         'upah_min'      => $i->post('upah_min'),
                         'upah_max'      => $i->post('upah_max'),
@@ -178,8 +184,8 @@ class Skill extends CI_Controller
                     'id_kategori'   => $i->post('id_kategori'),
                     'nama_skill'      => $i->post('nama_skill'),
                     // 'type'          => $i->post('type'),
-                    'type'          => 'Part Time',
-                    'regional'      => 'Makassar',
+                    'slug'          => url_title($i->post('nama_skill', 'dash', TRUE)),
+                    'regional'      => $i->post('regional'),
                     'deskripsi'     => $i->post('deskripsi'),
                     'upah_min'      => $i->post('upah_min'),
                     'upah_max'      => $i->post('upah_max'),
@@ -193,6 +199,7 @@ class Skill extends CI_Controller
             'kategori'  => $kategori,
             'skill'     => $skill,
             'gambar'    => $gambar,
+            'regional'    => $regional,
             'content' => 'user/skill/edit'
         ];
         $this->load->view('user/layout/wrapper', $data, FALSE);

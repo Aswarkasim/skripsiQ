@@ -1,3 +1,4 @@
+<?php $konfigurasi = $this->Crud_model->listingOne('tbl_konfigurasi', 'id_konfigurasi', '1'); ?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -8,7 +9,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title><?= $konfigurasi->nama_aplikasi;
+          if (isset($title)) {
+            echo ' || ' . $title;
+          } ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -21,7 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>dist/css/AdminLTE.min.css">
 
-  <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>dist/css/skins/skin-green.min.css">
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -30,5 +34,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
   <div class="wrapper">

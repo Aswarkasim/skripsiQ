@@ -17,6 +17,29 @@ function is_logged_in_user()
     }
 }
 
+function is_logged_admin()
+{
+    $ci = get_instance();
+    if (($ci->session->userdata('id_user') == '') && (($ci->session->userdata('role') != 'Admin')) || $ci->session->userdata('role') != 'Super Admin') {
+        redirect('home/auth');
+    }
+}
+
+function is_logged_superAdmin()
+{
+    $ci = get_instance();
+    if (($ci->session->userdata('id_user') == '') && $ci->session->userdata('role') != 'Super Admin') {
+        redirect('home/auth');
+    }
+}
+
+function cek_session($session)
+{
+    $ci = get_instance();
+    $sess = $ci->session->userdata($session);
+    echo $sess;
+}
+
 function post($name)
 {
     $ci = get_instance();

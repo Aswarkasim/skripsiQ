@@ -43,13 +43,15 @@ class Auth extends CI_Controller
                 $s = $this->session;
                 $s->set_userdata('id_user', $cek_login->id_user);
                 $s->set_userdata('email', $cek_login->email);
-                $s->set_userdata('nama_user', $cek_login->nama_user);
+                $s->set_userdata('namalengkap', $cek_login->namalengkap);
                 $s->set_userdata('is_active', $cek_login->is_active);
+                $s->set_userdata('role', $cek_login->role);
 
                 redirect(base_url('admin/dashboard'), 'refresh');
             } else {
                 $data = array(
                     'title'     => 'Login Admin Ananda Private',
+                    'error'     => 'Email atau password salah',
                     'content'   => 'admin/auth/content/'
                 );
                 $this->load->view('admin/auth/login_admin', $data);
@@ -63,6 +65,7 @@ class Auth extends CI_Controller
         $s->unset_userdata('id_user');
         $s->unset_userdata('email');
         $s->unset_userdata('nama_user');
+        $s->unset_userdata('role');
         $s->unset_userdata('is_active');
         redirect(base_url('admin/auth'), 'refresh');
     }

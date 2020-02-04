@@ -18,6 +18,7 @@ class Profil extends CI_Controller
     {
         $id_user = $this->session->userdata('id_user');
         $profil = $this->Crud_model->listingOne('tbl_user', 'id_user', $id_user);
+        $kota = $this->Crud_model->listing('tbl_regional');
 
         $required = '%s tidak boleh kosong';
         $is_unique = $this->input->post('username') . ' telah ada, silakan masukkan nama yang lain';
@@ -32,10 +33,15 @@ class Profil extends CI_Controller
                 $config['upload_path']   = './assets/uploads/images/';
                 $config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
                 $config['max_size']      = '24000'; // KB 
+                $config['width']        = '500';
+                $config['height']        = '500';
+                $this->load->library('image_lib', $config);
                 $this->upload->initialize($config);
+
                 if (!$this->upload->do_upload('foto')) {
                     $data = [
                         'profil'    => $profil,
+                        'kota'      => $kota,
                         'error'     => $this->upload->display_errors(),
                         'content'   => 'user/profil/index'
                     ];
@@ -45,22 +51,22 @@ class Profil extends CI_Controller
 
                     $i = $this->input;
                     $data = [
-                        'id_user'       => $this->session->userdata('id_user'),
-                        'username'   => $i->post('username'),
+                        'id_user'   => $this->session->userdata('id_user'),
+                        'username'  => $i->post('username'),
                         'profesi'   => $i->post('profesi'),
-                        'tgl_lahir'   => $i->post('tgl_lahir'),
-                        'deskripsi'   => $i->post('deskripsi'),
-                        'hp'          => $i->post('hp'),
-                        'email'         => $i->post('email'),
-                        'kota'   => $i->post('kota'),
-                        'kecamatan'   => $i->post('kecamatan'),
-                        'kodepos'     => $i->post('kodepos'),
-                        'alamat'     => $i->post('alamat'),
-                        'tw'     => $i->post('tw'),
-                        'fb'     => $i->post('fb'),
-                        'ig'     => $i->post('ig'),
-                        'linkedin'     => $i->post('linkedin'),
-                        'foto'        => $upload_data['uploads']['file_name']
+                        'tgl_lahir' => $i->post('tgl_lahir'),
+                        'deskripsi' => $i->post('deskripsi'),
+                        'hp'        => $i->post('hp'),
+                        'email'     => $i->post('email'),
+                        'kota'      => $i->post('kota'),
+                        'kecamatan' => $i->post('kecamatan'),
+                        'kodepos'   => $i->post('kodepos'),
+                        'alamat'    => $i->post('alamat'),
+                        'tw'        => $i->post('tw'),
+                        'fb'        => $i->post('fb'),
+                        'ig'        => $i->post('ig'),
+                        'linkedin'  => $i->post('linkedin'),
+                        'foto'      => $upload_data['uploads']['file_name']
                     ];
                     $this->Crud_model->edit('tbl_user', 'id_user', $id_user, $data);
                     $this->session->set_flashdata('msg', 'Profil diperbaharui');
@@ -92,6 +98,7 @@ class Profil extends CI_Controller
         }
         $data = [
             'profil'  => $profil,
+            'kota'      => $kota,
             'content' => 'user/profil/index'
         ];
         $this->load->view('user/layout/wrapper', $data, FALSE);

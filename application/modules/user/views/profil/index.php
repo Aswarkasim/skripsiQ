@@ -73,16 +73,13 @@
                     <div class="single-resume-feild feild-flex-2">
                         <div class="single-input">
                             <label for="contry">Kota:</label>
-                            <select id="contry">
-                                <option>Arab Amirats</option>
-                                <option>America</option>
-                                <option>Netherlands</option>
-                                <option>Russia</option>
-                                <option selected="">Bangladesh</option>
-                                <option>India</option>
-                                <option>Pakistan</option>
-                                <option>Brazil</option>
-                                <option>Africa</option>
+                            <select name="kota" class="form-control">
+                                <?php foreach ($kota as $row) { ?>
+                                    <option value="">Pilih Kota</option>
+                                    <option value="<?= $row->nama_regional ?>" <?php if (($row->nama_regional) == $profil->kota) {
+                                                                                    echo 'selected';
+                                                                                } ?>><?= $row->nama_regional ?></option>
+                                <?php  } ?>
                             </select>
                             <?= form_error('kota', '<small class="text-danger">', '</small>') ?>
                         </div>

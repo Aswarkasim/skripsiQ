@@ -43,7 +43,7 @@
 
                         <hr>
 
-                        <?php include('komentar.php') ?>
+                        <?php include('tanggapan.php') ?>
 
                     </div>
                 </div>

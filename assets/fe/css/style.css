@@ -2027,7 +2027,8 @@ ul.footer-social li a>i {
 
 .sigle-top-job {
 	background: #fff none repeat scroll 0 0;
-	margin-top: 30px
+	/* margin-top: 30px */
+	margin-top: 20px
 }
 
 .top-job-company-image {
@@ -2052,7 +2053,8 @@ ul.footer-social li a>i {
 }
 
 .top-job-company-desc {
-	padding: 20px 15px 30px;
+	/* padding: 20px 15px 30px; */
+	padding: 0px 15px 0px;
 	background: #fafafa;
 	text-align: center;
 }
@@ -4138,8 +4140,8 @@ td span {
 
 .single-candidate-list {
 	background: #fff none repeat scroll 0 0;
-	margin-bottom: 10px;
-	padding: 0 30px 20px;
+	margin-bottom: 0px;
+	padding: 0 30px 0px;
 	position: relative;
 	-webkit-transition: all 300ms ease 0s;
 	transition: all 300ms ease 0s;

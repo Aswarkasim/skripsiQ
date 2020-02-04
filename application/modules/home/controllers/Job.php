@@ -36,16 +36,31 @@ class Job extends CI_Controller
 
     function detail($id_job)
     {
+
+        $this->session->unset_userdata('id_post');
+
+        $this->load->model('Home_model');
+
         $this->session->unset_userdata('id_job');
         $gambar = $this->Crud_model->listingOneAll('tbl_gambar', 'id_post', $id_job);
         $job = $this->Crud_model->listingOne('tbl_job', 'id_job', $id_job);
         $profil = $this->Crud_model->listingOne('tbl_user', 'id_user', $job->id_user);
+        $tanggapan = $this->Home_model->listTanggapan($id_job);
         $data = [
             'profil'      => $profil,
             'job'       => $job,
             'gambar'      => $gambar,
+            'tanggapan'      => $tanggapan,
             'content'     => 'home/job/detail'
         ];
         $this->load->view('layout/wrapper', $data);
+    }
+
+    function readTanggapan($id_job)
+    {
+        $this->load->model('Home_model');
+
+        $tanggapan = $this->Home_model->listTanggapan($id_job);
+        echo json_encode($tanggapan);
     }
 }
