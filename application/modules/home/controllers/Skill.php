@@ -14,6 +14,7 @@ class Skill extends CI_Controller
     public function index()
     {
         //  $id_user = $this->session->userdata('id_user');
+        $this->load->model('home/Home_model');
 
 
         $this->load->library('pagination');
@@ -25,9 +26,11 @@ class Skill extends CI_Controller
         $from = $this->uri->segment(4);
         $this->pagination->initialize($config);
         $skill = $this->Crud_model->listing('tbl_skill', $config['per_page'], $from);
+        $banner = $this->Home_model->listBanner('skill')->row();
 
         $data = [
             'skill'       => $skill,
+            'banner'       => $banner,
             'pagination' => $this->pagination->create_links(),
             'content'   => 'home/skill/index'
         ];

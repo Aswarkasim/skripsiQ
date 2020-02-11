@@ -36,14 +36,14 @@ $('.tombol-logout').on('click', function (e) {
     const href = $(this).attr('href');
 
     Swal({
-        title: 'Apakah Rifat dan Dinda Cocok?',
-        text: "kalau tidak memilih berarti cocok",
+        title: 'Anda akan keluar?',
+        // text: "kalau tidak memilih berarti cocok",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#25AD60',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya!',
-        cancelButtonText: 'Betul Sekali',
+        cancelButtonText: 'Batal',
     }).then((result) => {
         if (result.value) {
             document.location.href = href;

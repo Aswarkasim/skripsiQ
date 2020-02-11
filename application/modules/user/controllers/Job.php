@@ -109,13 +109,16 @@ class Job extends CI_Controller
 
     function detail($id_job)
     {
+        $this->load->model('User_model');
         $this->session->unset_userdata('id_job');
         $gambar = $this->Crud_model->listingOneAll('tbl_gambar', 'id_post', $id_job);
         $job = $this->Crud_model->listingOne('tbl_job', 'id_job', $id_job);
         $profil = $this->Crud_model->listingOne('tbl_user', 'id_user', $job->id_user);
+        $tanggapan = $this->User_model->listTanggapanPost($id_job);
         $data = [
             'profil'      => $profil,
             'job'       => $job,
+            'tanggapan'       => $tanggapan,
             'gambar'      => $gambar,
             'content'     => 'user/job/detail'
         ];
@@ -206,5 +209,20 @@ class Job extends CI_Controller
             'content' => 'user/job/edit'
         ];
         $this->load->view('user/layout/wrapper', $data, FALSE);
+    }
+
+    public function cari()
+    {
+        $this->load->model('user/User_model');
+
+        $i = $this->input;
+        $id_user = $this->session->userdata('id_user');
+        $keyword = $i->post('keyword');
+        $hasil = $this->User_model->cari($keyword, $id_user, 'tbl_job');
+        $data = [
+            'job'     => $hasil,
+            'content'   => 'user/job/index'
+        ];
+        $this->load->view('layout/wrapper', $data, FALSE);
     }
 }

@@ -9,12 +9,13 @@ class Job extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Admin_model');
     }
 
 
     public function index()
     {
-        $job = $this->Crud_model->listing('tbl_job');
+        $job = $this->Admin_model->listingJob();
         $data = [
             'job'     => $job,
             'content' => 'admin/job/index'

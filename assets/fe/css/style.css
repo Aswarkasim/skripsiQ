@@ -449,11 +449,11 @@ li {
 	margin-top: 76px
 }
 
-.breadcromb-top {
+/* .breadcromb-top {
 	position: relative;
 	background: url(../img/breadcromb_bg.png) no-repeat scroll center center /cover;
 	z-index: 1
-}
+} */
 
 .breadcromb-top:before {
 	position: absolute;

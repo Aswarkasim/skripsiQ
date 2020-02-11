@@ -1,10 +1,19 @@
+<style>
+    .breadcromb-top {
+        position: relative;
+        background: url(<?= base_url('assets/uploads/banner/' . $banner->gambar) ?>) no-repeat scroll center center /cover;
+        z-index: 1
+    }
+</style>
+
 <section class="jobguru-breadcromb-area">
     <div class="breadcromb-top section_100">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcromb-box">
-                        <h3>Dashboard</h3>
+                        <h3><?= $this->uri->segment(2)
+                            ?></h3>
                     </div>
                 </div>
             </div>

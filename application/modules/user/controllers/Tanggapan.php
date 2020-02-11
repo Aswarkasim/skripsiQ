@@ -1,6 +1,4 @@
 <?php
-
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Tanggapan extends CI_Controller
@@ -41,5 +39,21 @@ class Tanggapan extends CI_Controller
             'content'         => 'user/tanggapan/index'
         ];
         $this->load->view('user/layout/wrapper', $data);
+    }
+
+    function detailJob()
+    {
+        $id_post = $this->uri->segment(4);
+        $id_tanggapan = $this->uri->segment(5);
+        is_read('tbl_tanggapan', 'id_tanggapan', $id_tanggapan);
+        redirect(base_url('user/job/detail/' . $id_post));
+    }
+
+    function detailSkill($id_post)
+    {
+        $id_post = $this->uri->segment(4);
+        $id_tanggapan = $this->uri->segment(5);
+        is_read('tbl_tanggapan', 'id_tanggapan', $id_tanggapan);
+        redirect(base_url('user/skill/detail/' . $id_post));
     }
 }

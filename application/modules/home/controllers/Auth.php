@@ -8,6 +8,12 @@ class Auth extends CI_Controller
 
     public function index()
     {
+        if ($this->session->userdata('id_user')) {
+            if ($this->session->role('Admin')) {
+                redirect('admin/dashboard');
+            }
+            redirect('home', 'refresh');
+        }
         $valid = $this->form_validation;
         $required = '%s tidak boleh kosong';
         $valid->set_rules('username', 'Email atau Username', 'required', array('required' => $required));
@@ -26,21 +32,43 @@ class Auth extends CI_Controller
             $login = $this->Crud_model->login($username, $password);
             if ($login) {
                 $s = $this->session;
+                if ($login->role == 'Admin') {
+                    $s->set_userdata('id_user', $login->id_user);
+                    $s->set_userdata('email', $login->email);
+                    $s->set_userdata('namalengkap', $login->namalengkap);
+                    $s->set_userdata('is_active', $login->is_active);
+                    $s->set_userdata('role', $login->role);
+
+                    redirect(base_url('admin/dashboard'), 'refresh');
+                }
                 $s->set_userdata('id_user', $login->id_user);
                 $s->set_userdata('username', $login->username);
                 $s->set_userdata('email', $login->email);
                 $s->set_userdata('namalengkap', $login->namalengkap);
                 $s->set_userdata('is_active', $login->is_active);
+
                 redirect('home', 'refresh');
             } else {
                 $login = $this->Crud_model->loginUsername($username, $password);
                 if ($login) {
                     $s = $this->session;
+
+                    if ($login->role == 'Admin') {
+                        $s->set_userdata('id_user', $login->id_user);
+                        $s->set_userdata('email', $login->email);
+                        $s->set_userdata('namalengkap', $login->namalengkap);
+                        $s->set_userdata('is_active', $login->is_active);
+                        $s->set_userdata('role', $login->role);
+
+                        redirect(base_url('admin/dashboard'), 'refresh');
+                    }
+
                     $s->set_userdata('id_user', $login->id_user);
                     $s->set_userdata('username', $login->username);
                     $s->set_userdata('email', $login->email);
                     $s->set_userdata('namalengkap', $login->namalengkap);
                     $s->set_userdata('is_active', $login->is_active);
+
                     redirect('home', 'refresh');
                 } else {
                     $this->session->set_flashdata('msg', 'Kesalahan autentikasi. Perhatikan username atau email dan password');

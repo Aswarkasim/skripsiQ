@@ -3,24 +3,24 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="browse-job-head-option">
-                    <div class="job-browse-search">
-                        <form>
-                            <input type="search" placeholder="Search Jobs Here...">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
                     <div class="job-browse-action">
                         <!-- <div class="email-alerts">
                             <input type="checkbox" class="styled" id="b_1">
                             <label class="styled" for="b_1">email alerts for this search</label>
                         </div> -->
                         <div class="dropdown">
-                            <button class="btn-dropdown dropdown-toggle" type="button" id="dropdowncur" data-toggle="dropdown" aria-haspopup="true">Short By</button>
+                            <!-- <button class="btn-dropdown dropdown-toggle" type="button" id="dropdowncur" data-toggle="dropdown" aria-haspopup="true">Short By</button>
                             <ul class="dropdown-menu" aria-labelledby="dropdowncur">
                                 <li>Newest</li>
                                 <li>Oldest</li>
                                 <li>Random</li>
-                            </ul>
+                            </ul> -->
+                        </div>
+                        <div class="job-browse-search">
+                            <form action="<?= base_url('user/job/cari') ?>" method="post">
+                                <input type="search" placeholder="Cari job kamu disini" name="keyword" required>
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -29,6 +29,11 @@
             <div class="col-md-12">
             </div>
         </div>
+        <br>
+        <strong>
+            <p>Sebanyak <?= count($job) ?> job ditemukan</p>
+        </strong>
+        </br>
         <div class="row">
             <?php foreach ($job as $row) { ?>
                 <div class="col-md-12 col-lg-4">
@@ -57,7 +62,11 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <?php echo $pagination ?>
+                <?php
+                if (isset($pagination)) {
+                    echo $pagination;
+                }
+                ?>
             </div>
         </div>
     </div>

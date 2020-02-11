@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller
         $data = [
             'title'     => 'Dashboard',
             'user'      => $user,
-            'content'   => 'admin/dashboard/indexs'
+            'content'   => 'admin/dashboard/index'
         ];
 
         $this->load->view('admin/layout/wrapper', $data, FALSE);

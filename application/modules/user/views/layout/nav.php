@@ -18,9 +18,9 @@ $uri = $this->uri->segment('2');
             <li class="<?php if ($uri == 'tanggapan') {
                             echo 'active';
                         } ?>"><a href="<?= base_url('user/tanggapan') ?>"><i class="fa fa-globe"></i>Tanggapan</a></li>
-            <li class="<?php if ($uri == 'pesan') {
-                            echo 'active';
-                        } ?>"><a href="<?= base_url('user/pesan') ?>"><i class="fa fa-envelope-open"></i>Pesan</a></li>
+            <!-- <li class="<?php if ($uri == 'pesan') {
+                                echo 'active';
+                            } ?>"><a href="<?= base_url('user/pesan') ?>"><i class="fa fa-envelope-open"></i>Pesan</a></li> -->
             <li class="<?php if ($uri == 'skill') {
                             echo 'active';
                         } ?>"><a href="<?= base_url('user/skill') ?>"><i class="fa fa-pencil"></i>Skill</a></li>

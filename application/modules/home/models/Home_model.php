@@ -29,7 +29,7 @@ class Home_model extends CI_Model
         return $query->result();
     }
 
-    public function cari($keyword, $regional = null, $table = null)
+    public function cari($keyword, $regional, $table)
     {
         $post = '';
         if ($table == 'tbl_skill') {
@@ -44,5 +44,15 @@ class Home_model extends CI_Model
             ->like($post, $keyword);
         $query = $this->db->get();
         return $query->result();
+    }
+
+    function listBanner($posisi)
+    {
+        $this->db->select('*')
+            ->from('tbl_banner')
+            ->where('posisi', $posisi)
+            ->order_by('urutan', 'ASC');
+        $query = $this->db->get();
+        return $query;
     }
 }

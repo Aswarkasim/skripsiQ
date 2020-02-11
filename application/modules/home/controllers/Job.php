@@ -13,6 +13,8 @@ class Job extends CI_Controller
 
     public function index()
     {
+        $this->load->model('home/Home_model');
+
         //  $id_user = $this->session->userdata('id_user');
 
 
@@ -25,9 +27,10 @@ class Job extends CI_Controller
         $from = $this->uri->segment(4);
         $this->pagination->initialize($config);
         $job = $this->Crud_model->listing('tbl_job', $config['per_page'], $from);
-
+        $banner = $this->Home_model->listBanner('job')->row();
         $data = [
             'job'       => $job,
+            'banner'       => $banner,
             'pagination' => $this->pagination->create_links(),
             'content'   => 'home/job/index'
         ];
@@ -62,5 +65,22 @@ class Job extends CI_Controller
 
         $tanggapan = $this->Home_model->listTanggapan($id_job);
         echo json_encode($tanggapan);
+    }
+
+    public function cari()
+    {
+        $this->load->model('home/Home_model');
+
+        $i = $this->input;
+        $id_user = $this->session->userdata('id_user');
+        $data_user = $this->Crud_model->listingOne('tbl_user', 'id_user', $id_user);
+        $regional = $data_user->kota;
+        $keyword = $i->post('keyword');
+        $hasil = $this->Home_model->cari($keyword, $regional, 'tbl_job');
+        $data = [
+            'hasil'     => $hasil,
+            'content'   => 'home/cari/index'
+        ];
+        $this->load->view('layout/wrapper', $data, FALSE);
     }
 }

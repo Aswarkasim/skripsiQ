@@ -73,14 +73,26 @@
                     <div class="single-resume-feild feild-flex-2">
                         <div class="single-input">
                             <label for="contry">Kota:</label>
-                            <select name="kota" class="form-control">
+                            <style>
+                                #for-select {
+                                    color: #666;
+                                }
+                            </style>
+                            <select name="kota" class="select2Form form-control" id="for-select" required>
+                                <option value="">Pilih Kota</option>
                                 <?php foreach ($kota as $row) { ?>
-                                    <option value="">Pilih Kota</option>
-                                    <option value="<?= $row->nama_regional ?>" <?php if (($row->nama_regional) == $profil->kota) {
+                                    <option value="<?= $row->id_regional ?>" <?php if (($row->id_regional) == $profil->kota) {
                                                                                     echo 'selected';
                                                                                 } ?>><?= $row->nama_regional ?></option>
                                 <?php  } ?>
                             </select>
+                            <script src="<?= base_url('assets/fe/') ?>js/jquery-3.0.0.min.js"></script>
+                            <!-- <script>
+                                $(function() {
+                                    //Initialize Select2 Elements
+                                    $('.select2Form').select2()
+                                })
+                            </script> -->
                             <?= form_error('kota', '<small class="text-danger">', '</small>') ?>
                         </div>
                         <div class="single-input">

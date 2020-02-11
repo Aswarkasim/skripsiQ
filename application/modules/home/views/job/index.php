@@ -1,10 +1,18 @@
+<style>
+    .breadcromb-top {
+        position: relative;
+        background: url(<?= base_url('assets/uploads/banner/' . $banner->gambar) ?>) no-repeat scroll center center /cover;
+        z-index: 1
+    }
+</style>
 <section class="jobguru-breadcromb-area">
     <div class="breadcromb-top section_100">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcromb-box">
-                        <h3>Dashboard</h3>
+                        <h3><?= $this->uri->segment(2);
+                            ?></h3>
                     </div>
                 </div>
             </div>
@@ -33,8 +41,8 @@
                 <div class="col-md-12">
                     <div class="browse-job-head-option">
                         <div class="job-browse-search">
-                            <form>
-                                <input type="search" placeholder="Search Jobs Here...">
+                            <form method="post" action="<?= base_url('home/job/cari') ?>">
+                                <input type="search" name="keyword" placeholder="Cari job disini...">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>

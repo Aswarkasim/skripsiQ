@@ -46,7 +46,7 @@
                             <select id="j_reg" class="" name="regional">
                                 <option value="">Pilih Region</option>
                                 <?php foreach ($regional as $row) { ?>
-                                    <option value="<?= $row->nama_regional ?>"><?= $row->nama_regional ?></option>
+                                    <option value="<?= $row->id_regional ?>"><?= $row->nama_regional ?></option>
                                 <?php } ?>
                             </select>
                         </div>

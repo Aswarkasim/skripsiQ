@@ -46,6 +46,15 @@ function post($name)
     $ci->input->post($name);
 }
 
+function is_read($table, $field, $id)
+{
+    $ci = get_instance();
+    $data = [
+        'is_read'   => 1
+    ];
+    $ci->Crud_model->edit($table, $field, $id, $data);
+}
+
 if (!function_exists('convert_number')) {
     function convert_number($no)
     {

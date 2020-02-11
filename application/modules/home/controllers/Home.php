@@ -19,11 +19,13 @@ class Home extends CI_Controller
 
         $kategori = $this->Crud_model->listing('tbl_kategori');
         $regional = $this->Crud_model->listing('tbl_regional');
+        $banner = $this->Home_model->listBanner('home')->result();
         $job = $this->Home_model->listPost('tbl_job');
         $skill = $this->Home_model->listPost('tbl_skill');
         $data = [
             'kategori'  => $kategori,
             'regional'  => $regional,
+            'banner'  => $banner,
             'job'       => $job,
             'skill'       => $skill,
             'content'   => 'home/home/index'
@@ -37,6 +39,7 @@ class Home extends CI_Controller
         $keyword = $i->post('keyword');
         $regional = $i->post('regional');
         $table = $i->post('table');
+
         $hasil = $this->Home_model->cari($keyword, $regional, $table);
         $data = [
             'hasil'     => $hasil,

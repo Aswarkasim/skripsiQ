@@ -33,8 +33,8 @@
                 <div class="col-md-12">
                     <div class="browse-job-head-option">
                         <div class="job-browse-search">
-                            <form>
-                                <input type="search" placeholder="Search Jobs Here...">
+                            <form method="post" action="<?= base_url('home/job/cari') ?>">
+                                <input type="search" name="keyword" placeholder="Cari job disini...">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
@@ -58,6 +58,7 @@
                 <div class="col-md-12">
                 </div>
             </div>
+
             <div class="row">
                 <?php foreach ($hasil as $row) {
                     if (isset($row->nama_skill)) { ?>

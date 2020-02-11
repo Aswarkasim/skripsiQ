@@ -9,7 +9,7 @@ class Skill extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        //Do your magic here
+        $this->load->model('user/User_model');
     }
 
 
@@ -52,8 +52,10 @@ class Skill extends CI_Controller
         $gambar = $this->Crud_model->listingOneAll('tbl_gambar', 'id_post', $id_skill);
         $skill = $this->Crud_model->listingOne('tbl_skill', 'id_skill', $id_skill);
         $profil = $this->Crud_model->listingOne('tbl_user', 'id_user', $skill->id_user);
+        $tanggapan = $this->User_model->listTanggapanPost($id_skill);
         $data = [
             'profil'      => $profil,
+            'tanggapan'   => $tanggapan,
             'skill'       => $skill,
             'gambar'      => $gambar,
             'content'     => 'user/skill/detail'
@@ -262,5 +264,34 @@ class Skill extends CI_Controller
         $this->Crud_model->delete('tbl_gambar', 'id_gambar', $id_gambar);
         $this->session->set_flashdata('msg', 'Gambar telah dihapus');
         redirect('user/skill/edit/' . $this->session->userdata('id_skill'));
+    }
+
+    public function cari()
+    {
+        $this->load->model('user/User_model');
+
+        $i = $this->input;
+        $id_user = $this->session->userdata('id_user');
+        $keyword = $i->post('keyword');
+        $hasil = $this->User_model->cari($keyword, $id_user, 'tbl_skill');
+        $data = [
+            'skill'     => $hasil,
+            'content'   => 'user/skill/index'
+        ];
+        $this->load->view('layout/wrapper', $data, FALSE);
+    }
+
+    public function tanggapan()
+    {
+        is_logged_in_user();
+        $data = [
+            'id_tanggapan' => random_string('numeric', '15'),
+            'id_user'   => $this->session->userdata('id_user'),
+            'id_post'   => $this->input->post('id_post'),
+            'id_to'     => $this->input->post('id_to'),
+            'isi'       => $this->input->post('isi')
+        ];
+        $this->Crud_model->add('tbl_tanggapan', $data);
+        redirect(base_url('user/skill/detail/' . $data['id_post']), 'refresh');
     }
 }

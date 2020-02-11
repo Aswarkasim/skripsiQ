@@ -14,7 +14,11 @@ $role = $this->session->userdata('role');
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">HEADER</li>
 
-
+            <li class="<?php if ($this->uri->segment(2) == "dashboard") {
+                            echo "active";
+                        }
+                        ?>"><a href="<?php echo base_url('admin/dashboard')
+                                        ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 
             <li class="treeview <?php if ($this->uri->segment(2) == "master") {
                                     echo "active";
@@ -33,6 +37,12 @@ $role = $this->session->userdata('role');
                                 } ?>"><a href="<?= base_url('admin/master/regional') ?>">Regional</a></li>
                 </ul>
             </li>
+            <li class="<?php if ($this->uri->segment(2) == "multiuser") {
+                            echo "active";
+                        }
+                        ?>"><a href="<?php echo base_url('admin/multiuser')
+                                        ?>"><i class="fa fa-users"></i> <span>Multiuser</span></a></li>
+
             <li class="<?php if ($this->uri->segment(2) == "job") {
                             echo "active";
                         }
@@ -43,11 +53,11 @@ $role = $this->session->userdata('role');
                         }
                         ?>"><a href="<?php echo base_url('admin/skill')
                                         ?>"><i class="fa fa-gavel"></i> <span>Skill</span></a></li>
-            <li class="<?php if ($this->uri->segment(2) == "laporan") {
-                            echo "active";
-                        }
-                        ?>"><a href="<?php echo base_url('admin/laporan')
-                                        ?>"><i class="fa fa-gavel"></i> <span>Laporan</span></a></li>
+            <!-- <li class="<?php if ($this->uri->segment(2) == "laporan") {
+                                echo "active";
+                            }
+                            ?>"><a href="<?php echo base_url('admin/laporan')
+                                            ?>"><i class="fa fa-file"></i> <span>Laporan</span></a></li> -->
             <li class="treeview <?php if ($this->uri->segment(2) == "user") {
                                     echo "active";
                                 } ?>">
@@ -63,11 +73,24 @@ $role = $this->session->userdata('role');
                 </ul>
             </li>
 
-            <li class="<?php if ($this->uri->segment(2) == "konfigurasi") {
-                            echo "active";
-                        }
-                        ?>"><a href="<?php echo base_url('admin/konfigurasi')
-                                        ?>"><i class="fa fa-cogs"></i> <span>Konfigurasi</span></a></li>
+            <li class="treeview <?php if ($this->uri->segment(2) == "konfigurasi") {
+                                    echo "active";
+                                } ?>">
+                <a href="#"><i class="fa fa-cogs"></i> <span>Konfigurasi</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?php if ($this->uri->segment(3) == "konfigurasi") {
+                                    echo "active";
+                                } ?>"><a href="<?= base_url('admin/konfigurasi/konfigurasi') ?>">Umum</a></li>
+                    <li class="<?php if ($this->uri->segment(3) == "banner") {
+                                    echo "active";
+                                } ?>"><a href="<?= base_url('admin/konfigurasi/banner') ?>">Banner</a></li>
+                </ul>
+            </li>
+
 
 
         </ul>
