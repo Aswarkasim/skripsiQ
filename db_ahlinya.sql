@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Feb 2020 pada 07.49
+-- Waktu pembuatan: 11 Feb 2020 pada 01.46
 -- Versi server: 10.1.32-MariaDB
 -- Versi PHP: 7.2.5
 
@@ -25,6 +25,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tbl_banner`
+--
+
+CREATE TABLE `tbl_banner` (
+  `id_banner` varchar(5) NOT NULL,
+  `gambar` varchar(100) NOT NULL,
+  `posisi` enum('home','job','skill') NOT NULL,
+  `urutan` int(3) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_banner`
+--
+
+INSERT INTO `tbl_banner` (`id_banner`, `gambar`, `posisi`, `urutan`, `date_created`) VALUES
+('03462', '6-things-you-should-never-store-on-your-work-computer.jpg', 'job', 4, '2020-02-11 07:21:02'),
+('04286', 'person-playing-chess-1040157.jpg', 'home', 2, '2020-02-10 14:09:52'),
+('07846', 'apartment-apple-business-245032.jpg', 'home', 3, '2020-02-11 07:03:55'),
+('34521', 'pexels-photo-210661.jpeg', 'skill', 5, '2020-02-11 07:21:36'),
+('51827', 'man-standing-infront-of-white-board-1181345.jpg', 'home', 1, '2020-02-10 14:06:48');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tbl_gambar`
 --
 
@@ -41,7 +66,8 @@ CREATE TABLE `tbl_gambar` (
 
 INSERT INTO `tbl_gambar` (`id_gambar`, `gambar`, `id_post`, `date_created`) VALUES
 (1, 'bertiga.jpeg', 'SKILL196792037084364', '0000-00-00 00:00:00'),
-(2, 'ARNI_NOISE.jpeg', 'SKILL621899582477634', '0000-00-00 00:00:00');
+(2, 'ARNI_NOISE.jpeg', 'SKILL621899582477634', '0000-00-00 00:00:00'),
+(3, 'ARNI_NOISE1.jpeg', 'SKILL820857623194110', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -73,11 +99,11 @@ CREATE TABLE `tbl_job` (
 --
 
 INSERT INTO `tbl_job` (`id_job`, `id_user`, `id_kategori`, `nama_job`, `slug`, `lokasi`, `regional`, `type`, `link`, `upah_min`, `upah_max`, `deskripsi`, `gambar`, `status`, `date_created`, `date_expired`) VALUES
-('JOB069551873164420', '10', '41243212', 'Gangguaan Listrik', '', '', 'Makassar', 'Part Time', '', 2000, 10000, '', 'pondok-tahfizh-masjid-jami-sengkang1.jpg', 'Aktif', '2020-01-02 12:53:02', '0000-00-00 00:00:00'),
-('JOB630189246375409', '3123', '32223f', 'Perbaiki keran air', 'Perbaiki-keran-air', '', 'Makassar', '', 'xxxxx', 1000, 3000, '', 'bertiga.jpeg', 'Aktif', '2020-02-04 08:40:42', '0000-00-00 00:00:00'),
-('JOB769051341279345', '3123', '32223f', 'Cuci Piring Warung makan', '', '', 'Makassar', '', '', 2000, 30002, '', 'Bulukumba.jpeg', 'Aktif', '2020-02-04 08:39:05', '0000-00-00 00:00:00'),
-('JOB921514707680386', '3123', '32223f', 'Cuci karpet', 'Cuci-karpet', 'Mamuju', 'Makassar', '', '', 1000, 10000, '<p>Lorem Piisnafs</p>', 'ARNANDA1.jpeg', 'Aktif', '2020-02-04 08:44:12', '0000-00-00 00:00:00'),
-('JOB992337670185526', '10', '41243212', 'Pell Lantain', '', '', 'Makassar', 'Part Time', 'xxxxx', 1000, 3000, '', '9493de01b143caeab7b53ee98fbaf6de.jpg', 'Aktif', '2020-01-02 12:52:06', '0000-00-00 00:00:00');
+('JOB069551873164420', '10', '41243212', 'Gangguaan Listrik', '', '', 'grt56', 'Part Time', '', 2000, 10000, '', 'pondok-tahfizh-masjid-jami-sengkang1.jpg', 'Aktif', '2020-01-02 12:53:02', '0000-00-00 00:00:00'),
+('JOB630189246375409', '3123', '32223f', 'Perbaiki keran air', 'Perbaiki-keran-air', '', 'grt56', '', 'xxxxx', 1000, 3000, '', 'bertiga.jpeg', 'Aktif', '2020-02-04 08:40:42', '0000-00-00 00:00:00'),
+('JOB769051341279345', '3123', '32223f', 'Cuci Piring Warung makan', '', '', 'grt56', '', '', 2000, 30002, '', 'Bulukumba.jpeg', 'Aktif', '2020-02-04 08:39:05', '0000-00-00 00:00:00'),
+('JOB921514707680386', '3123', '32223f', 'Cuci karpet', 'Cuci-karpet', 'Mamuju', 'grt56', '', '', 1000, 10000, '<p>Lorem Piisnafs</p>', 'ARNANDA1.jpeg', 'Aktif', '2020-02-04 08:44:12', '0000-00-00 00:00:00'),
+('JOB992337670185526', '10', '41243212', 'Pell Lantain', '', '', 'grt56', 'Part Time', 'xxxxx', 1000, 3000, '', '9493de01b143caeab7b53ee98fbaf6de.jpg', 'Aktif', '2020-01-02 12:52:06', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -149,16 +175,18 @@ CREATE TABLE `tbl_laporan` (
 --
 
 CREATE TABLE `tbl_regional` (
-  `nama_regional` varchar(50) NOT NULL
+  `id_regional` varchar(5) NOT NULL,
+  `nama_regional` varchar(20) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tbl_regional`
 --
 
-INSERT INTO `tbl_regional` (`nama_regional`) VALUES
-('Gowa'),
-('Makassar');
+INSERT INTO `tbl_regional` (`id_regional`, `nama_regional`, `date_created`) VALUES
+('fds3d', 'Makassar', '2020-02-04 07:24:00'),
+('grt56', 'Gowa', '2020-02-04 07:24:00');
 
 -- --------------------------------------------------------
 
@@ -186,21 +214,21 @@ CREATE TABLE `tbl_skill` (
 --
 
 INSERT INTO `tbl_skill` (`id_skill`, `id_user`, `id_kategori`, `nama_skill`, `slug`, `regional`, `type`, `upah_min`, `upah_max`, `deskripsi`, `gambar`, `date_created`) VALUES
-('SKILL196792037084364', '10', '41243212', 'Service Laptop 1', '', 'Makassar', 'Part Time', 20001, 30002, '<p><strong>memberanikan </strong>diri menjadi seperti mereka saat ini asfasf</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-25 13:37:13'),
-('SKILL196792037084367', '10', '41243212', 'Service Laptop 2', '', 'Makassar', 'Part Time', 20001, 30002, '<p><strong>memberanikan </strong>diri menjadi seperti mereka saat ini asfasf</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-25 13:37:13'),
+('SKILL196792037084364', '10', '41243212', 'Service Laptop 1', '', 'fds3d', 'Part Time', 20001, 30002, '<p><strong>memberanikan </strong>diri menjadi seperti mereka saat ini asfasf</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-25 13:37:13'),
+('SKILL196792037084367', '10', '41243212', 'Service Laptop 2', '', 'fds3d', 'Part Time', 20001, 30002, '<p><strong>memberanikan </strong>diri menjadi seperti mereka saat ini asfasf</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-25 13:37:13'),
 ('SKILL350289981767342', '3123', '21e212', 'Panjat Kelapa', 'Panjat-Kelapa', '', 'Part Time', 200000, 10000, '<p>lorem ipsum</p>', 'ASSA_BAJU_PUTIH_WITH_NOISE.jpeg', '2020-02-04 08:35:20'),
 ('SKILL489286502607531', '3123', '32223f', 'Angkat Air', 'Angkat-Air', 'Gowa', '', 2000, 10000, '<p>Lorem IPsum dodosmlasf</p>', 'Akar_kesederhaan.jpeg', '2020-02-04 08:42:28'),
 ('SKILL621899582477634', '3123', '21e212', 'Cuci Piring Kilat', 'Cuci-Piring-Kilat', 'Gowa', '', 2000, 300000000, '<p>INformatif</p>', 'Cover_waktu_itu.png', '2020-02-04 08:37:39'),
-('SKILL820857623194107', '10', '41243212', 'Angkat  Lemari 3', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
-('SKILL820857623194110', '10', '41243212', 'Angkat  Lemari 4', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
-('SKILL820857623194111', '10', '41243212', 'Angkat  Lemari 5', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
-('SKILL820857623194112', '10', '41243212', 'Angkat  Lemari 6', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
-('SKILL820857623194113', '10', '41243212', 'Angkat  Lemari 7', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
-('SKILL820857623194125', '10', '41243212', 'Angkat  Lemari 8', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
-('SKILL820857623194134', '10', '41243212', 'Angkat  Lemari 9', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
-('SKILL820857623194145', '10', '41243212', 'Angkat  Lemari 10', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
-('SKILL820857623194165', '10', '41243212', 'Angkat  Lemari 11', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
-('SKILL820857623194198', '10', '41243212', 'Angkat  Lemari 12', '', 'Makassar', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34');
+('SKILL820857623194107', '10', '41243212', 'Angkat  Lemari 3', '', 'fds3d', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
+('SKILL820857623194110', '10', '41243212', 'Angkat  Lemari 4', '', 'fds3d', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
+('SKILL820857623194111', '10', '41243212', 'Angkat  Lemari 5', '', 'fds3d', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
+('SKILL820857623194112', '10', '41243212', 'Angkat  Lemari 6', '', 'fds3d', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
+('SKILL820857623194113', '10', '41243212', 'Angkat  Lemari 7', '', 'fds3d', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
+('SKILL820857623194125', '10', '41243212', 'Angkat  Lemari 8', '', 'grt56', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
+('SKILL820857623194134', '10', '41243212', 'Angkat  Lemari 9', '', 'grt56', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
+('SKILL820857623194145', '10', '41243212', 'Angkat  Lemari 10', '', 'grt56', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
+('SKILL820857623194165', '10', '41243212', 'Angkat  Lemari 11', '', 'grt56', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34'),
+('SKILL820857623194198', '10', '41243212', 'Angkat  Lemari 12', '', 'grt56', 'Part Time', 2000, 30002, '<p>lorem ipsum</p>', '9493de01b143caeab7b53ee98fbaf6de.jpg', '2019-12-27 07:02:34');
 
 -- --------------------------------------------------------
 
@@ -223,9 +251,16 @@ CREATE TABLE `tbl_tanggapan` (
 --
 
 INSERT INTO `tbl_tanggapan` (`id_tanggapan`, `id_user`, `id_to`, `id_post`, `isi`, `is_read`, `date_created`) VALUES
-('004341136586227', '3123', '10', 'JOB069551873164420', '<p>Adakah</p>', 0, '2020-02-03 00:00:17'),
-('653062317574492', '3123', '10', 'SKILL196792037084364', '<p>ADakah</p>', 0, '2020-02-03 00:02:04'),
-('839429182573140', '3123', '10', 'JOB069551873164420', '<p>affs</p>', 0, '2020-02-02 23:58:46');
+('004341136586227', '3123', '10', 'JOB069551873164420', '<p>Adakah</p>', 1, '2020-02-03 00:00:17'),
+('112350648504967', '10', '10', 'SKILL196792037084367', '<p>ayolah</p>', 1, '2020-02-09 00:34:26'),
+('176094785651343', '10', '3123', 'JOB921514707680386', '<p>Belum selesai pekerjaan ta bos?</p>', 0, '2020-02-06 14:08:28'),
+('345897385661094', '2', '10', 'JOB069551873164420', '<p>Adakah</p>', 1, '2020-02-06 13:44:21'),
+('369153510428827', '10', '10', 'SKILL196792037084364', '<p>Adakah</p>', 0, '2020-02-09 00:30:39'),
+('476930832798120', '10', '3123', 'JOB921514707680386', '<p>dimana rumah ta bos?</p>', 0, '2020-02-06 14:08:15'),
+('493260785605879', '10', '10', 'SKILL196792037084367', '<p>Asas</p>', 0, '2020-02-09 00:33:28'),
+('653062317574492', '3123', '10', 'SKILL196792037084364', '<p>ADakah</p>', 1, '2020-02-03 00:02:04'),
+('683156340722987', '10', '10', 'SKILL196792037084367', '<p>Adakah</p>', 0, '2020-02-09 00:32:56'),
+('839429182573140', '3123', '10', 'JOB069551873164420', '<p>affs</p>', 1, '2020-02-02 23:58:46');
 
 -- --------------------------------------------------------
 
@@ -275,13 +310,19 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `foto`, `username`, `email`, `namalengkap`, `password`, `role`, `is_active`, `profesi`, `tgl_lahir`, `bahasa`, `deskripsi`, `hp`, `kota`, `kecamatan`, `kodepos`, `alamat`, `tw`, `fb`, `ig`, `linkedin`, `date_created`) VALUES
-('10', 'Bulukumba.jpeg', 'aswarkasim', 'aswarkasim@gmail.com', 'Aswar Kasim', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'User', 1, 'xxxxx sdf df', '2019-10-24', 'xxxx', 'xxxx xvsvd', 'xxxxx', 'Gowa', 'xxxx', '0dsdsd', '0sdfsdf', 'xxxxfsdf', 'xxxx sdf', 'https://instagram.com', 'xxxxxxsdf', '2019-09-25 07:44:46'),
-('2', 'default.jpg', 'burhan', 'burhan@gmail.com', 'Burhan', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'User', 1, 'xxxxx', '0000-00-00', '', '', '', '', '', '0', '0', '', '', '', '', '2019-10-19 07:37:17'),
+('10', 'Bulukumba.jpeg', 'aswarkasim', 'aswarkasim@gmail.com', 'Aswar Kasim', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'User', 1, 'xxxxx sdf df', '2019-10-24', 'xxxx', 'xxxx xvsvd', 'xxxxx', 'grt56', 'xxxx', '0dsdsd', '0sdfsdf', 'xxxx sdf', 'xxxxfsdf', 'https://instagram.com', 'xxxxxxsdf', '2019-09-25 07:44:46'),
+('2', 'default.jpg', 'burhan', 'burhan@gmail.com', 'Burhan', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'User', 1, 'xxxxx', '0000-00-00', '', '', '', 'grt56', '', '0', '0', '', '', '', '', '2019-10-19 07:37:17'),
 ('3123', 'RARA_NOISE.jpeg', 'admin', 'admin@gmail.com', 'admin', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'Admin', 1, '', '2020-01-14', '', '', '', '', '', '', '', '', '', '', '', '2020-01-17 14:20:55');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `tbl_banner`
+--
+ALTER TABLE `tbl_banner`
+  ADD PRIMARY KEY (`id_banner`);
 
 --
 -- Indeks untuk tabel `tbl_gambar`
@@ -317,7 +358,7 @@ ALTER TABLE `tbl_laporan`
 -- Indeks untuk tabel `tbl_regional`
 --
 ALTER TABLE `tbl_regional`
-  ADD PRIMARY KEY (`nama_regional`);
+  ADD PRIMARY KEY (`id_regional`);
 
 --
 -- Indeks untuk tabel `tbl_skill`
@@ -351,7 +392,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT untuk tabel `tbl_gambar`
 --
 ALTER TABLE `tbl_gambar`
-  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_konfigurasi`
