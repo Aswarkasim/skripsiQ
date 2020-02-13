@@ -6,15 +6,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Banner extends CI_Controller
 {
 
-    // public function index()
-    // {
-    //     $banner = $this->Crud_model->listing('tbl_banner');
-    //     $data = [
-    //         'banner'    => $banner,
-    //         'content'   => 'admin/banner/index'
-    //     ];
-    //     $this->load->view('admin/layout/wrapper', $data, FALSE);
-    // }
 
     public function index()
     {

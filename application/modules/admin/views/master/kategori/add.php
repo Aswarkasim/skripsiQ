@@ -2,7 +2,7 @@
     <i class="fa fa-plus"></i>Tambah
 </button>
 
-<?= form_open(base_url($tombol['add'])) ?>
+<?= form_open_multipart(base_url('admin/master/kategori/index')) ?>
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -38,7 +38,7 @@
                             <label for="" class="pull-right">Icon</label>
                         </div>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="icon_kategori" required>
+                            <input type="text" class="form-control" name="icon" required>
                         </div>
                     </div>
                 </div>

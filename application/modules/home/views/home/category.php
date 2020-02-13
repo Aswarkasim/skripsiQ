@@ -4,15 +4,15 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="site-heading">
-                    <h2>top Trending <span>Categories</span></h2>
-                    <p>A better career is out there. We'll help you find it. We're your first step to becoming everything you want to be.</p>
+                    <h2>KATEGORI<span></span></h2>
+                    <p>Temukan pembagian berdasarkan kategori. siapa tahu cocok!</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <?php
             foreach ($kategori as $row) {
-                ?>
+            ?>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <a href="#" class="single-category-holder account_cat">
                         <div class="category-holder-icon">
@@ -21,7 +21,7 @@
                         <div class="category-holder-text">
                             <h3><?= $row->nama_kategori ?></h3>
                         </div>
-                        <img src="<?= base_url() ?>assets/fe/img/account_cat.jpg" alt="category" />
+                        <img src="<?= base_url('assets/uploads/kategori/' . $row->gambar) ?>" alt="category" />
                     </a>
                 </div>
             <?php } ?>

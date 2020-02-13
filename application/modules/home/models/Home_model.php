@@ -55,4 +55,14 @@ class Home_model extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+
+    function getKategori($id_kategori)
+    {
+        $this->db->select('*')
+            ->from('tbl_skill')
+            ->where('tbl_skill.id_kategori', $id_kategori)
+            ->order_by('tbl_skill.date_created', 'RAND');
+        $query = $this->db->get();
+        return $query;
+    }
 }

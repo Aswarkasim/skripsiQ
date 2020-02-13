@@ -47,4 +47,14 @@ class Home extends CI_Controller
         ];
         $this->load->view('layout/wrapper', $data, FALSE);
     }
+
+    function kategori($id_kategori)
+    {
+        $hasil = $this->Home_model->getKategori($id_kategori);
+        $data = [
+            'hasil'     => $hasil,
+            'content'   => 'home/cari/kategori'
+        ];
+        $this->load->view('layout/wrapper', $data, FALSE);
+    }
 }

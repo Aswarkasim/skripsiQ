@@ -15,8 +15,8 @@
                 <div class="col-md-10 col-lg-3 thumbnail">
                     <div class="sigle-top-job">
                         <div class="top-job-company-image">
-                            <div class="">
-                                <a href="#">
+                            <div class="jobThumnail">
+                                <a href="#" style="display: inline-block">
                                     <img src="<?= base_url('assets/uploads/job/' . $row->gambar) ?>" alt="company image">
                                 </a>
                             </div>

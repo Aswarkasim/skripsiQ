@@ -39,7 +39,7 @@
                 <div class="col-md-12 col-lg-4">
                     <div class="sigle-top-job">
                         <div class="top-job-company-image">
-                            <div class="">
+                            <div class="jobThumnail">
                                 <a href="#">
                                     <img src="<?= base_url('assets/uploads/job/' . $row->gambar) ?>" alt="company image">
                                 </a>

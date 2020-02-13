@@ -1,0 +1,15 @@
+
+.jobThumnail {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.jobThumnail a {
+    margin-left: -55px;
+    margin-top: -10px;
+    width: 310px;
+    height: 310px;
+
+}

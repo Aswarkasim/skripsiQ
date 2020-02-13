@@ -42,10 +42,10 @@
                         <form action="<?= base_url('home/cari') ?>" method="post">
                             <div class="banner-form-box">
                                 <div class="banner-form-input">
-                                    <input type="text" name="keyword" placeholder="Nama pekerjaan atau skill">
+                                    <input type="text" name="keyword" required placeholder="Nama pekerjaan atau skill">
                                 </div>
                                 <div class="banner-form-input">
-                                    <select class="banner-select" name="regional">
+                                    <select class="banner-select" name="regional" required>
                                         <option selected>Pilih Regional</option>
                                         <?php foreach ($regional as $row) { ?>
                                             <option value="<?= $row->id_regional ?>"><?= $row->nama_regional ?></option>
@@ -53,7 +53,7 @@
                                     </select>
                                 </div>
                                 <div class="banner-form-input">
-                                    <select class="banner-select" name="table">
+                                    <select class="banner-select" name="table" required>
                                         <option selected>Pilih Type</option>
                                         <option value="tbl_skill">Skill</option>
                                         <option value="tbl_job">Job</option>

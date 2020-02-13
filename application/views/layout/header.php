@@ -34,21 +34,21 @@ $sektor = $this->Crud_model->listing('tbl_kategori');
                                 <li><a href="<?= base_url() ?>">Beranda</a></li>
                                 <li><a href="<?= base_url('home/job') ?>">Job</a></li>
                                 <li><a href="<?= base_url('home/skill') ?>">Skill</a></li>
-                                <li class="has-children">
+                                <!-- <li class="has-children">
                                     <a href="#">Sektor</a>
                                     <ul>
                                         <?php foreach ($sektor as $row) { ?>
-                                            <li><a href="<?= $row->id_kategori ?>"><?= $row->nama_kategori ?></a></li>
+                                            <li><a href="<?= base_url('home/kategori/') . $row->id_kategori ?>"><?= $row->nama_kategori ?></a></li>
                                         <?php } ?>
-                                        <!-- <li class="has-inner-child">
+                                        <li class="has-inner-child">
                                             <a href="#">blog</a>
                                             <ul>
                                                 <li><a href="blog.html">blog</a></li>
                                                 <li><a href="single-blog.html">single blog</a></li>
                                             </ul>
-                                        </li> -->
-                                    </ul>
-                                </li>
+                                        </li> 
+                            </ul>
+                            </li> -->
                             </ul>
                         </nav>
                     </div>

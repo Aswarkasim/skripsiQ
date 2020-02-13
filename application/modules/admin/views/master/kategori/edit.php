@@ -6,7 +6,7 @@
                     <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Edit Kategori</h4>
             </div>
-            <?= form_open(base_url($tombol['edit'] . '/' . $row->id_kategori)) ?>
+            <?= form_open_multipart(base_url('admin/master/kategori/edit/' . $row->id_kategori)) ?>
             <div class="modal-body">
                 <div class="form-group">
                     <div class="row">
@@ -14,7 +14,7 @@
                             <label for="" class="pull-right">Kode Kategori</label>
                         </div>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="id_kategori" required value="<?= 'KT' . random_string('numeric', '4') ?>">
+                            <input type="text" class="form-control" name="id_kategori" required disabled value="<?= $row->id_kategori ?>">
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                             <label for="" class="pull-right">Nama Kategori</label>
                         </div>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="<?= $row->nama_kategori ?>" name="nama_kategori" required>
+                            <input type="text" class="form-control" name="nama_kategori" required value="<?= $row->nama_kategori ?>">
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                             <label for="" class="pull-right">Icon</label>
                         </div>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="icon_kategori" value="<?= $row->icon ?>" required>
+                            <input type="text" class="form-control" name="icon" required value="<?= $row->icon ?>">
                         </div>
                     </div>
                 </div>
@@ -44,9 +44,8 @@
                             <label for="" class="pull-right">Gambar</label>
                         </div>
                         <div class="col-md-9">
-                            <input type="file" class="form-control" name="gambar" required>
-                            <br>
-                            <img width="50%" src="<?= base_url('assets/uploads/images/default.jpg') ?>" alt="">
+                            <img width=300px src="<?= base_url('assets/uploads/kategori/' . $row->gambar) ?>" alt="">
+                            <input type="file" class="form-control" name="gambar">
                         </div>
                     </div>
                 </div>

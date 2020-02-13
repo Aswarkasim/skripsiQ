@@ -38,6 +38,7 @@
     <!--Responsive css-->
     <link rel="stylesheet" href="<?= base_url() ?>assets/fe/css/responsive.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/fe/css/hoverimg.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/fe/css/custom.css">
 </head>
 
 <body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Feb 2020 pada 01.46
+-- Waktu pembuatan: 13 Feb 2020 pada 00.59
 -- Versi server: 10.1.32-MariaDB
 -- Versi PHP: 7.2.5
 
@@ -124,9 +124,10 @@ CREATE TABLE `tbl_kategori` (
 --
 
 INSERT INTO `tbl_kategori` (`id_kategori`, `nama_kategori`, `icon`, `gambar`, `date_created`) VALUES
-('21e212', 'Perkebunan', 'fa fa-dashboard', 'default.jpg', '2020-01-15 13:37:22'),
-('32223f', 'Rumah', 'fa fa-home', 'default.jpg', '2020-01-15 13:37:22'),
-('41243212', 'servis elektronik', 'fa fa-desktop', 'default.jpg', '2019-10-20 11:50:18');
+('21e212', 'Perkebunan', 'fa fa-dashboard', 'AINUNG.jpeg', '2020-01-15 13:37:22'),
+('32223f', 'Rumah', 'fa fa-home', 'ARNANDA.jpeg', '2020-01-15 13:37:22'),
+('41243212', 'servis elektronikk', 'fa fa-desktop', 'ASSA_BAJU_PUTIH_WITH_NOISE.jpeg', '2019-10-20 11:50:18'),
+('92751', 'Otomotif', 'fa fa-cogs', '1b74ab472906d0621558879626e890f8.jpg', '2020-02-11 15:37:28');
 
 -- --------------------------------------------------------
 
@@ -255,7 +256,8 @@ INSERT INTO `tbl_tanggapan` (`id_tanggapan`, `id_user`, `id_to`, `id_post`, `isi
 ('112350648504967', '10', '10', 'SKILL196792037084367', '<p>ayolah</p>', 1, '2020-02-09 00:34:26'),
 ('176094785651343', '10', '3123', 'JOB921514707680386', '<p>Belum selesai pekerjaan ta bos?</p>', 0, '2020-02-06 14:08:28'),
 ('345897385661094', '2', '10', 'JOB069551873164420', '<p>Adakah</p>', 1, '2020-02-06 13:44:21'),
-('369153510428827', '10', '10', 'SKILL196792037084364', '<p>Adakah</p>', 0, '2020-02-09 00:30:39'),
+('369153510428827', '10', '10', 'SKILL196792037084364', '<p>Adakah</p>', 1, '2020-02-09 00:30:39'),
+('373680145972609', '10', '3123', 'JOB769051341279345', '<p>Adakah</p>', 0, '2020-02-12 23:09:20'),
 ('476930832798120', '10', '3123', 'JOB921514707680386', '<p>dimana rumah ta bos?</p>', 0, '2020-02-06 14:08:15'),
 ('493260785605879', '10', '10', 'SKILL196792037084367', '<p>Asas</p>', 0, '2020-02-09 00:33:28'),
 ('653062317574492', '3123', '10', 'SKILL196792037084364', '<p>ADakah</p>', 1, '2020-02-03 00:02:04'),
